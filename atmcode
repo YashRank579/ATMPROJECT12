@@ -1,0 +1,77 @@
+#include <stdio.h>
+
+// Function to display the menu
+void displayMenu() {
+    printf("\n===== ATM Menu =====\n");
+    printf("1. Check Balance\n");
+    printf("2. Deposit Money\n");
+    printf("3. Withdraw Money\n");
+    printf("4. Exit\n");
+    printf("=====================\n");
+}
+
+int main() {
+    // Initial balance
+    float balance = 1000.0;
+    
+    // User choice
+    int choice;
+    
+    do {
+        displayMenu();
+        
+        // Get user choice
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        
+        switch (choice) {
+            case 1:
+                // Check Balance
+                printf("Your balance: $%.2f\n", balance);
+                break;
+                
+            case 2:
+                // Deposit Money
+                {
+                    float depositAmount;
+                    printf("Enter the amount to deposit: $");
+                    scanf("%f", &depositAmount);
+                    
+                    if (depositAmount > 0) {
+                        balance += depositAmount;
+                        printf("Deposit successful. Your new balance: $%.2f\n", balance);
+                    } else {
+                        printf("Invalid amount for deposit.\n");
+                    }
+                }
+                break;
+                
+            case 3:
+                // Withdraw Money
+                {
+                    float withdrawAmount;
+                    printf("Enter the amount to withdraw: $");
+                    scanf("%f", &withdrawAmount);
+                    
+                    if (withdrawAmount > 0 && withdrawAmount <= balance) {
+                        balance -= withdrawAmount;
+                        printf("Withdrawal successful. Your new balance: $%.2f\n", balance);
+                    } else {
+                        printf("Invalid amount for withdrawal or insufficient funds.\n");
+                    }
+                }
+                break;
+                
+            case 4:
+                // Exit
+                printf("Thank you for using the ATM. Goodbye!\n");
+                break;
+                
+            default:
+                printf("Invalid choice. Please enter a valid option.\n");
+        }
+        
+    } while (choice != 4);
+    
+    return 0;
+}
